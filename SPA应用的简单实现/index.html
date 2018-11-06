@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- 
+ author : clearlove
+ aim : csdn
+ date : 2018-9
+ bug : no
+ test : 2018-11-6 这是一个利用hash的操作模拟一个路由的操作，这里不需要使用路由就可以实现一个spa的效果
+ -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			a{
+				text-decoration: none;
+				margin-left: 1rem;
+			}
+			
+			input{
+				width: 10rem;
+				height: 2rem;
+				border: 1px solid black;
+				margin-top: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="#tom">Tom</a>
+		<a href="#jim">Jim</a>
+		<a href="#jary">Jary</a><br />
+		<input type="text" name="" id="name" value="" readonly="readonly"/>
+		<input type="text" name="" id="text" value="" readonly="readonly"/>
+		<script type="text/javascript">
+			/* 监听hash改变的事件 */
+			window.addEventListener('hashchange',function(){
+				/* 将hash的值拿到 */
+				var hash = document.location.hash;
+				/* 使用switch判断hash的值是多少 */
+				switch(hash){
+					case '#tom' :
+					$.ajax({
+						url:'./json/all_name.json',
+						success:function(data){
+							$("#name").val(data[0].name);
+							$("#text").val(data[0].text);
+						}
+					});
+					break;
+					case '#jim' :
+					$.ajax({
+						url:'./json/all_name.json',
+						success:function(data){
+							$("#name").val(data[1].name);
+							$("#text").val(data[1].text);
+						}
+					});
+					break;
+					case '#jary' :
+					$.ajax({
+						url:'./json/all_name.json',
+						success:function(data){
+							$("#name").val(data[2].name);
+							$("#text").val(data[2].text); 
+						}
+					});
+					break;
+					default :
+					$.ajax({
+						url:'./json/all_name.json',
+						success:function(data){
+							$("#name").val(data[0].name);
+							$("#text").val(data[0].text); 
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
